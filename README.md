@@ -5,6 +5,8 @@ OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32
 
 ## Diagramă bloc cu toate componentele proiectului
 
+## Listă de materiale (BOM)
+
 | Componentă             | Link pentru achizitionare                                                                                             | Link Datasheet                                                                                                      |
 |------------------------|----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
 | 112A-TAAR-R03 ATTEND   | https://store.comet.srl.ro/Catalogue/Product/43497/                                                            | https://www.snapeda.com/parts/112A-TAAR-R03/Attend/datasheet/                                                     |
@@ -32,7 +34,6 @@ OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32
 | XC6220A331MR-G         | (https://componentsearchengine.com/part-view/XC6220A331MR-G/Torex)          | (https://product.torexsemi.com/system/files/series/xc6220.pdf)                                                          |
 | 744043680   BOBINA  | https://ro.mouser.com/ProductDetail/Wurth-Elektronik/744043680?qs=PGXP4M47uW6VkZq%252BkzjrHA%3D%3D             | https://www.we-online.com/components/products/datasheet/744043680.pdf                                              |
  
-## Listă de materiale (BOM)
 
 ## Funcționalitatea Hardware 
 ESP32-C6 este nucleul EOpenBook-ului, oferind conectivitate Wi-Fi 6 și Bluetooth 5.0 LE. Acesta include:
@@ -153,3 +154,9 @@ Bus I²C: Un singur bus I²C conectează toate dispozitivele I²C (BME688, RTC, 
 Pini GPIO: Pinii cu capacitate de întrerupere (IO13, IO19) au fost selectați pentru funcții care necesită funcționalitate de trezire.
 UART: Pinii standard UART (IO16/IO17) sunt utilizați pentru programare și depanare pentru a asigura compatibilitatea cu instrumentele standard de dezvoltare.
 Gestionarea Energiei: Pinii de control pentru domeniile de alimentare sunt configurați pentru a permite controlul individual al perifericelor pentru o gestionare optimă a energiei.
+
+##Detalii Suplimentare de Proiectare
+
+### Asezarea TP-urilor: TP-urile au fost amplasate strategic în apropierea marginilor plăcii de circuit imprimat și în vecinătatea componentelor cheie. Această alegere facilitează accesul pentru operațiunile de depanare și testare.
+## Diode (Montare pe Suprafață ): Designul inițial al amprentei pentru diode prezenta orificii de contact (pad holes) cu un diametru insuficient, ceea ce ar fi putut genera dificultăți semnificative în procesul de lipire. Pentru a asigura o fabricație fără probleme și o conexiune electrică solidă, dimensiunea acestor orificii a fost revizuită.
+## Rutare și Plan de Masă: Rutarea traseelor a fost realizată atât pe stratul superior, cât și pe stratul inferior al PCB-ului. Această strategie a necesitat utilizarea unui total de 1105 vias pentru a interconecta diferitele straturi și a permite o rutare complexă a semnalelor. Deși un număr mare de vias poate influența costul și complexitatea fabricației, utilizarea ambelor straturi oferă o flexibilitate sporită în distribuția semnalelor și a alimentării. Planul de masă (GND) a fost implementat după finalizarea rutării, fiind aplicat pe ambele straturi ale plăcii (superior și inferior). 
