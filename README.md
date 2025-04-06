@@ -157,6 +157,9 @@ Gestionarea Energiei: Pinii de control pentru domeniile de alimentare sunt confi
 
 ##Detalii Suplimentare de Proiectare
 
-### Asezarea TP-urilor: TP-urile au fost amplasate strategic în apropierea marginilor plăcii de circuit imprimat și în vecinătatea componentelor cheie. Această alegere facilitează accesul pentru operațiunile de depanare și testare.
-## Diode (Montare pe Suprafață ): Designul inițial al amprentei pentru diode prezenta orificii de contact (pad holes) cu un diametru insuficient, ceea ce ar fi putut genera dificultăți semnificative în procesul de lipire. Pentru a asigura o fabricație fără probleme și o conexiune electrică solidă, dimensiunea acestor orificii a fost revizuită.
-## Rutare și Plan de Masă: Rutarea traseelor a fost realizată atât pe stratul superior, cât și pe stratul inferior al PCB-ului. Această strategie a necesitat utilizarea unui total de 1105 vias pentru a interconecta diferitele straturi și a permite o rutare complexă a semnalelor. Deși un număr mare de vias poate influența costul și complexitatea fabricației, utilizarea ambelor straturi oferă o flexibilitate sporită în distribuția semnalelor și a alimentării. Planul de masă (GND) a fost implementat după finalizarea rutării, fiind aplicat pe ambele straturi ale plăcii (superior și inferior). 
+### Asezarea TP-urilor: 
+TP-urile au fost amplasate strategic în apropierea marginilor plăcii de circuit imprimat și în vecinătatea componentelor cheie. Această alegere facilitează accesul pentru operațiunile de depanare și testare.
+## Diode (Montare pe Suprafață ):
+Designul inițial al amprentei pentru diode prezenta orificii de contact (pad holes) cu un diametru insuficient, ceea ce ar fi putut genera dificultăți semnificative în procesul de lipire. Pentru a asigura o fabricație fără probleme și o conexiune electrică solidă, dimensiunea acestor orificii a fost revizuită.
+## Rutare și Plan de Masă: 
+Rutarea traseelor a fost realizată atât pe stratul superior, cât și pe stratul inferior al PCB-ului. Această strategie a necesitat utilizarea unui total de 1105 vias pentru a interconecta diferitele straturi și a permite o rutare complexă a semnalelor. Deși un număr mare de vias poate influența costul și complexitatea fabricației, utilizarea ambelor straturi oferă o flexibilitate sporită în distribuția semnalelor și a alimentării. Planul de masă (GND) a fost implementat după finalizarea rutării, fiind aplicat pe ambele straturi ale plăcii (superior și inferior). 
