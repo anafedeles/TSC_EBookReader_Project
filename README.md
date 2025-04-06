@@ -7,8 +7,8 @@ OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32
 
 ## Listă de materiale (BOM)
 
-#Funcționalitatea Hardware 
-ESP32-C6 este nucleul EBookReader-ului, oferind conectivitate Wi-Fi 6 și Bluetooth 5.0 LE. Acesta include:
+## Funcționalitatea Hardware 
+ESP32-C6 este nucleul EOpenBook-ului, oferind conectivitate Wi-Fi 6 și Bluetooth 5.0 LE. Acesta include:
 
 ### Procesor RISC-V single-core de 160MHz
 512KB de SRAM
