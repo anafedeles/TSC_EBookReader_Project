@@ -4,6 +4,7 @@
 OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32-C6, cu diverși senzori și interfețe.
 
 ## Diagramă bloc cu toate componentele proiectului
+![Copie a fișierului Diagrama Bloc](https://github.com/user-attachments/assets/d25c0d56-d1e5-49c7-9f2d-74b835f5872e)
 
 ## Listă de materiale (BOM)
 
