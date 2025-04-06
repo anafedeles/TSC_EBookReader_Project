@@ -1,7 +1,7 @@
 # TSC_EBookReader_Project
 
 ## 
-EBookReader este un dispozitiv avansat construit în jurul microcontrolerului ESP32-C6, cu diverși senzori și interfețe.
+OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32-C6, cu diverși senzori și interfețe.
 
 ## Diagramă bloc cu toate componentele proiectului
 
