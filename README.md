@@ -108,8 +108,20 @@ Cu o baterie tipică LiPo de 2000mAh
 ~80 de ore de funcționare continuă în mod inactiv
 ~2-3 săptămâni cu modele tipice de utilizare (treziri periodice și actualizări ale afișajului)
 
-##Alocarea Pinilor ESP32-C6 ComponentăPini ESP32InterfațăNoteAfișaj E-PaperIO12 (EPD_CS), IO11 (EPD_DC), IO5 (EPD_RST), IO4 (EPD_BUSY)SPI (MOSI, SCK)Pin CS selectat pentru suport hardware SPISenzor de Mediu (BME688)IO8, IO10I²C (SDA, SCL)Se folosesc pull-up-uri interneMemorie Flash ExternăIO0 (FLASH_CS)SPI (MOSI, MISO, SCK)Partajează busul SPI cu afișajul, dar cu CS dedicatCard SDIO7 (SS_SD)SPI (MOSI, MISO, SCK)Partajează busul SPI cu alte componenteCeas în Timp RealIO8, IO10I²C (SDA, SCL)Partajează busul I²C cu BME688, întrerupere pe IO13 (INT_RTC)Indicator BaterieIO8, IO10I²C (SDA, SCL)Partajează busul I²C cu alte dispozitive I²CSerial USBIO16 (TX), IO17 (RX)UARTPini UART impliciți pentru programare și debugInterfață UtilizatorIO9 (IO/BOOT), IO19 (IO/CHANGE)GPIOPini de intrare cu pull-up-uri pentru butoanele utilizatorului
-Raționamentul Selecției Pinilor:
+##Alocarea Pinilor ESP32-C6 
+
+## Alocarea Pinilor ESP32-C6
+
+| Componentă                  | Pini ESP32                                                  | Interfață         | Note                                                                                                                               |
+|-----------------------------|-------------------------------------------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| Afișaj E-Paper              | IO12 (EPD_CS), IO11 (EPD_DC), IO5 (EPD_RST), IO4 (EPD_BUSY) | SPI (MOSI, SCK)   | Pin CS selectat pentru suport hardware SPI                                                                                          |
+| Senzor de Mediu (BME688)    | IO8, IO10                                                   | I²C (SDA, SCL)    | Se folosesc pull-up-uri interne                                                                                                     |
+| Memorie Flash Externă       | IO0 (FLASH_CS)                                              | SPI (MOSI, MISO, SCK) | Partajează busul SPI cu afișajul, dar cu CS dedicat                                                                                |
+| Card SD                     | IO7 (SS_SD)                                                 | SPI (MOSI, MISO, SCK) | Partajează busul SPI cu alte componente                                                                                             |
+| Ceas în Timp Real (DS3231SN) | IO8, IO10                                                   | I²C (SDA, SCL)    | Partajează busul I²C cu BME688, întrerupere pe IO13 (INT_RTC)                                                                      |
+| Indicator Baterie           | IO8, IO10                                                   | I²C (SDA, SCL)    | Partajează busul I²C cu alte dispozitive I²C                                                                                       |
+| Serial USB                  | IO16 (TX), IO17 (RX)                                        | UART              | Pini UART impliciți pentru programare și debug                                                                                       |
+| Interfață Utilizator        | IO9 (IO/BOOT), IO19 (IO/CHANGE)                             | GPIO              | Pini de intrare cu pull-up-uri pentru butoanele utilizatorului                                                                     |
 
 Bus SPI: Bus-ul SPI este partajat între mai multe dispozitive (afișaj, flash, card SD) pentru a minimiza utilizarea pinilor. Fiecare dispozitiv are un pin dedicat de selectare a chip-ului pentru a asigura o comunicare corectă.
 Bus I²C: Un singur bus I²C conectează toate dispozitivele I²C (BME688, RTC, indicator baterie) pentru a minimiza utilizarea pinilor, oferind în același timp o comunicare fiabilă la viteze standard (100kHz-400kHz).
