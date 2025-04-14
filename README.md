@@ -4,7 +4,8 @@
 OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32-C6, cu diverși senzori și interfețe.
 
 ## Diagramă bloc cu toate componentele proiectului
-![Copie a fișierului Diagrama Bloc](https://github.com/user-attachments/assets/d25c0d56-d1e5-49c7-9f2d-74b835f5872e)
+![Copie a fișierului Diagrama Bloc](https://github.com/user-attachments/assets/222f7a93-14d7-4c47-8770-ee1234b10eef)
+
 
 ## Listă de materiale (BOM)
 
@@ -139,28 +140,35 @@ Cu o baterie tipică LiPo de 2000mAh
 
 ## Alocarea Pinilor ESP32-C6
 
-| Componentă                  | Pini ESP32                                                  | Interfață         | Note                                                                                                                               |
-|-----------------------------|-------------------------------------------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| Afișaj E-Paper              | IO12 (EPD_CS), IO11 (EPD_DC), IO5 (EPD_RST), IO4 (EPD_BUSY) | SPI (MOSI, SCK)   | Pin CS selectat pentru suport hardware SPI                                                                                          |
-| Senzor de Mediu (BME688)    | IO8, IO10                                                   | I²C (SDA, SCL)    | Se folosesc pull-up-uri interne                                                                                                     |
-| Memorie Flash Externă       | IO0 (FLASH_CS)                                              | SPI (MOSI, MISO, SCK) | Partajează busul SPI cu afișajul, dar cu CS dedicat                                                                                |
-| Card SD                     | IO7 (SS_SD)                                                 | SPI (MOSI, MISO, SCK) | Partajează busul SPI cu alte componente                                                                                             |
-| Ceas în Timp Real (DS3231SN) | IO8, IO10                                                   | I²C (SDA, SCL)    | Partajează busul I²C cu BME688, întrerupere pe IO13 (INT_RTC)                                                                      |
-| Indicator Baterie           | IO8, IO10                                                   | I²C (SDA, SCL)    | Partajează busul I²C cu alte dispozitive I²C                                                                                       |
-| Serial USB                  | IO16 (TX), IO17 (RX)                                        | UART              | Pini UART impliciți pentru programare și debug                                                                                       |
-| Interfață Utilizator        | IO9 (IO/BOOT), IO19 (IO/CHANGE)                             | GPIO              | Pini de intrare cu pull-up-uri pentru butoanele utilizatorului                                                                     |
+| Componentă                 | Pini ESP32-C6 (funcție)                                                  | Note / Utilizare                                                                 |
+|---------------------------|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **E-Paper Display**       | IO3 (EPD_BUSY), IO5 (EPD_DC), IO6 (SCK), IO7 (MOSI), IO10 (EPD_CS), IO23 (EPD_RST), IO20 (EPD_3V3_C) | Interfață SPI; include semnalizare BUSY și control reset/alimentare               |
+| **Magistrala I2C**        | IO21 (SDA), IO22 (SCL), IO19 (I2C_PW)                                     | Comun pentru BME688, MAX17048, DS3231; I2C_PW pentru control alimentare senzori  |
+| **RTC DS3231SN**          | IO0 (INT_RTC), IO1 (32KHz), IO18 (RTC_RST)                                | Întrerupere externă, semnal 32KHz opțional, reset hardware                        |
+| **USB**                   | IO12 (USB_D-), IO13 (USB_D+)                                              | Comunicație USB cu PC                                                             |
+| **UART**                  | IO16 (TX), IO17 (RX)                                                      | Comunicație serială pentru programare/debug                                       |
+| **Card SD**               | IO2 (MISO), IO4 (SS_SD), IO6 (SCK), IO7 (MOSI)                            | SPI partajat; CS dedicat pentru card SD                                           |
+| **Memorie Flash NOR**     | IO11 (FLASH_CS), IO2 (MISO), IO6 (SCK), IO7 (MOSI)                        | Partajează SPI cu SD și EPD; CS dedicat                                           |
+| **Butoane**               | EN (RESET), IO8 (IO/BOOT), IO15 (IO/CHANGE)                               | BOOT pentru mod programare; CHANGE pentru acțiuni personalizate                   |
+| **Alimentare & GND**      | Pin 2 (3V3), Pin 1 (GND)                                                  | Alimentare stabilă 3.3V; masă comună                                              |
 
 Bus SPI: Bus-ul SPI este partajat între mai multe dispozitive (afișaj, flash, card SD) pentru a minimiza utilizarea pinilor. Fiecare dispozitiv are un pin dedicat de selectare a chip-ului pentru a asigura o comunicare corectă.
-Bus I²C: Un singur bus I²C conectează toate dispozitivele I²C (BME688, RTC, indicator baterie) pentru a minimiza utilizarea pinilor, oferind în același timp o comunicare fiabilă la viteze standard (100kHz-400kHz).
+Bus I2C: Un singur bus I2C conectează toate dispozitivele I2C (BME688, RTC, indicator baterie) pentru a minimiza utilizarea pinilor, oferind în același timp o comunicare fiabilă la viteze standard (100kHz-400kHz).
 Pini GPIO: Pinii cu capacitate de întrerupere (IO13, IO19) au fost selectați pentru funcții care necesită funcționalitate de trezire.
 UART: Pinii standard UART (IO16/IO17) sunt utilizați pentru programare și depanare pentru a asigura compatibilitatea cu instrumentele standard de dezvoltare.
 Gestionarea Energiei: Pinii de control pentru domeniile de alimentare sunt configurați pentru a permite controlul individual al perifericelor pentru o gestionare optimă a energiei.
 
 ## Detalii Suplimentare de Proiectare
 
+Pentru a preveni eventualele erori la nivelul plăcii PCB, am ajustat dimensiunile anumitor footprint-uri și am corectat pad-urile, astfel încât să respecte normele de funcționare corespunzătoare. De asemenea, am aplicat regulile din checklist-ul de proiectare, inclusiv poziționarea condensatorilor de decuplare cât mai aproape de pinii VCC ai circuitelor integrate.
 ### Asezarea TP-urilor: 
 TP-urile au fost amplasate strategic în apropierea marginilor plăcii de circuit imprimat și în vecinătatea componentelor cheie. Această alegere facilitează accesul pentru operațiunile de depanare și testare.
 ### Diode (Montare pe Suprafață ):
 Designul inițial al amprentei pentru diode prezenta orificii de contact (pad holes) cu un diametru insuficient, ceea ce ar fi putut genera dificultăți semnificative în procesul de lipire. Pentru a asigura o fabricație fără probleme și o conexiune electrică solidă, dimensiunea acestor orificii a fost revizuită.
 ### Rutare și Plan de Masă: 
 Rutarea traseelor a fost realizată atât pe stratul superior, cât și pe stratul inferior al PCB-ului. Această strategie a necesitat utilizarea unui total de 105 vias pentru a interconecta diferitele straturi și a permite o rutare complexă a semnalelor. Deși un număr mare de vias poate influența costul și complexitatea fabricației, utilizarea ambelor straturi oferă o flexibilitate sporită în distribuția semnalelor și a alimentării. Planul de masă (GND) a fost implementat după finalizarea rutării, fiind aplicat pe ambele straturi ale plăcii (superior și inferior). 
+În realizarea designului am urmărit respectarea riguroasă a regulilor impuse de ERC și DRC. Amplasarea componentelor a fost realizată pe baza documentației tehnice disponibile (dimensiuni și recomandări de plasare), dar și ținând cont de cerințele de rutare și de asigurarea unei funcționări optime a dispozitivului.
+
+
+
+
