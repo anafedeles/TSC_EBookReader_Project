@@ -1,7 +1,15 @@
 # TSC_EBookReader_Project
 
 ## 
-OpenBook este un dispozitiv avansat construit în jurul microcontrolerului ESP32-C6, cu diverși senzori și interfețe.
+Proiectul **EOpenBook** este o platformă portabilă cu afișaj E-Paper, construită în jurul microcontrollerului ESP32-C6, cu scopul de a oferi o interfață de citire eficientă energetic și complet conectată. Include funcționalități precum:
+
+- Afișare E-Paper cu consum redus
+- Stocare locală pe memorie NOR și card microSD
+- Monitorizare baterie și încărcare
+- Ceas în timp real (RTC)
+- Senzor de mediu cu detecție VOC
+- Protecții ESD și rutare optimizată
+
 
 ## Diagramă bloc cu toate componentele proiectului
 ![Copie a fișierului Diagrama Bloc](https://github.com/user-attachments/assets/222f7a93-14d7-4c47-8770-ee1234b10eef)
@@ -169,6 +177,9 @@ Designul inițial al amprentei pentru diode prezenta orificii de contact (pad ho
 Rutarea traseelor a fost realizată atât pe stratul superior, cât și pe stratul inferior al PCB-ului. Această strategie a necesitat utilizarea unui total de 105 vias pentru a interconecta diferitele straturi și a permite o rutare complexă a semnalelor. Deși un număr mare de vias poate influența costul și complexitatea fabricației, utilizarea ambelor straturi oferă o flexibilitate sporită în distribuția semnalelor și a alimentării. Planul de masă (GND) a fost implementat după finalizarea rutării, fiind aplicat pe ambele straturi ale plăcii (superior și inferior). 
 În realizarea designului am urmărit respectarea riguroasă a regulilor impuse de ERC și DRC. Amplasarea componentelor a fost realizată pe baza documentației tehnice disponibile (dimensiuni și recomandări de plasare), dar și ținând cont de cerințele de rutare și de asigurarea unei funcționări optime a dispozitivului.
 
+## Concluzie
+
+Designul hardware al proiectului **EOpenBook** îmbină performanța, eficiența energetică și modularitatea. Fiecare componentă a fost atent aleasă și integrată cu respectarea standardelor de proiectare (ERC/DRC). PCB-ul rezultat este pregătit pentru fabricație și testare, având o structură robustă, consum redus și compatibilitate excelentă cu cerințele mecanice.
 
 
 
